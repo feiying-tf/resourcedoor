@@ -10,6 +10,13 @@ const mime = require('mime');
 const compress = require('./compress');
 const range = require('./range');
 const isFresh = require('./cache');
+const Handlebars = require('handlebars');
+
+const tplPath = path.join(__dirname, '../template/dir.tpl');
+const source = fs.readFileSync(tplPath);
+const template = Handlebars.compile(source.toString());
+
+nunjucks.configure('views', { autoescape: true });
 
 module.exports = async function (filePath, req, res) {
   try {
@@ -43,24 +50,41 @@ module.exports = async function (filePath, req, res) {
     } else if (stats.isDirectory()) { // 如果是目录，就显示目
       let data = await readdir(filePath, 'utf8')
       res.setHeader('content-type', 'text/html; charset=utf-8');
-      // 模板路径
+      // 模板路径 
       let tmlPath = path.join(__dirname, '../template/tml.html');
+      // let tmlPath = 'C:\\Program Files\\nodejs\\node_global\\node_modules\\resourcedoor\\src\\template\\tml.html'
       // 获取相对位置
       const dir = path.relative(conf.root, filePath);
-      let content = nunjucks.render(tmlPath, {
-        dir: dir?`/${dir}`:'',
-        items: data.map(item => {
-          return {
-            type: mime.getType(item)?mime.getType(item):'text/plain',
-            path: item
-          }
-        })
-      }) 
-      res.end(content);
+      let content;
+      try {
+        content = nunjucks.render(tmlPath, {
+          dir: dir?`/${dir}`:'',
+          items: data.map(item => {
+            return {
+              type: mime.getType(item)?mime.getType(item):'text/plain',
+              path: item
+            }
+          })
+        }) 
+        res.end(content);
+      } catch (error) {
+        console.info('这儿时error', error)
+        const content = {
+          title: path.basename(filePath),
+          dir: dir ? `/${dir}` : '',
+          files: data.map(file => {
+            return {
+              file,
+              icon: mime.getType(file)?mime.getType(file):'text/plain',
+            }
+          })
+        };
+        res.end(template(content));
+      }
     }
   } catch (error) {
     res.statusCode = 404;
     res.setHeader('content-type', 'text/plain');
-    res.end(`${filePath} is not a directory or file\n`)
+    res.end(`${filePath} is not a directory or file\n ${error}`)
   }
 }

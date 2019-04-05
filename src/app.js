@@ -16,6 +16,7 @@ class Server {
       res.statusCode = 200;
       let requestPath = url.parse(req.url).pathname;
       let filePath = conf.root + requestPath;
+      console.info('这儿时filePath', filePath);
       route(filePath, req, res);
     })
     

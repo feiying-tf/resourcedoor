@@ -1,6 +1,6 @@
 {
   "name": "resourcedoor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "the nodeJs static web server",
   "main": "src/app.js",
   "bin": {
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
+    "handlebars": "^4.1.1",
     "mime": "^2.4.0",
     "nunjucks": "^3.2.0",
     "yargs": "^13.2.2"
