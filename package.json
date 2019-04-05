@@ -1,6 +1,6 @@
 {
   "name": "resourcedoor",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "the nodeJs static web server",
   "main": "src/app.js",
   "bin": {
