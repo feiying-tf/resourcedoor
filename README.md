@@ -2,9 +2,9 @@
 the nodeJs static web server
 
 ## 效果
-### 如果是目录将返回目录列表
+1. 如果是目录将返回目录列表
 ![image](https://github.com/tfeng-use/resourcedoor/blob/master/static/Catalog.png)
-### 如果是文件那返回文件内容
+2. 如果是文件那返回文件内容
 ![image](https://github.com/tfeng-use/resourcedoor/blob/master/static/file.png)
 
 ## 安装
