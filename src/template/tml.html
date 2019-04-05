@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    a {
+      margin-top: 5px;
+      padding-left: 10px;
+      font-size: 20px;
+      text-decoration: none;
+      display: block;
+      color: #444;
+      line-height: 1.5em;
+      background-color: #eee;
+    }
+    a:hover {
+      color: #222;
+      /* font-size: 700px; */
+      font-weight: 700;
+      background-color: #ccc;
+    }
+    span {
+      color: #00e;
+    }
+    /* a:nth-child(2n) {
+      color: #eee;
+      background-color: #777;
+    }
+    a:nth-child(2n+1) {
+      color: #777;
+      background-color: #eee;
+    } */
+  </style>
+</head>
+<body>
+  {% for item in items %}
+  <a href="{{dir + '/' + item.path}}">
+    <span>[{{item.type}}]</span> {{item.path}}
+  </a>
+  {% endfor %}
+</body>
+</html>

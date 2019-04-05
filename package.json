@@ -1,0 +1,34 @@
+{
+  "name": "resourcedoor",
+  "version": "1.0.0",
+  "description": "the nodeJs static web server",
+  "main": "src/app.js",
+  "bin": {
+    "resourcedoor": "bin/resourcedoor"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tfeng-use/resourcedoor.git"
+  },
+  "keywords": [
+    "node.js"
+  ],
+  "author": "tangfeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tfeng-use/resourcedoor/issues"
+  },
+  "homepage": "https://github.com/tfeng-use/resourcedoor#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0"
+  },
+  "dependencies": {
+    "mime": "^2.4.0",
+    "nunjucks": "^3.2.0",
+    "yargs": "^13.2.2"
+  }
+}
